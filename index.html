@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Portfolio</title>
+	<meta name="description" content="Art portfolio">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="home">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+	<a class="site-header__name" href="#top" id="site-name">Portfolio</a>
+
+	<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+		<span class="screen-reader-text">Menu</span>
+		<span class="nav-toggle__bars" aria-hidden="true"></span>
+	</button>
+
+	<nav id="site-nav" class="site-nav" aria-label="Main">
+		<ul class="site-nav__list">
+			<li><a href="#top">Home</a></li>
+			<li><a href="#about">About</a></li>
+			<li><a href="#works">Works</a></li>
+			<li><a href="#contact">Contact</a></li>
+		</ul>
+	</nav>
+</header>
+
+<main id="main" class="site-main">
+	<noscript><p style="padding:2rem">Please turn on JavaScript to see this portfolio.</p></noscript>
+	<section class="hero" id="top"></section>
+	<section class="about" id="about"></section>
+	<section class="works" id="works">
+		<h2 class="bubble bubble--section">works</h2>
+		<div class="works__grid" id="works-grid"></div>
+	</section>
+	<section class="contact" id="contact"></section>
+</main>
+
+<footer class="site-footer">
+	<p class="site-footer__copy" id="copyright"></p>
+	<nav class="site-footer__legal" aria-label="Legal">
+		<ul class="site-footer__list">
+			<li><a href="impressum.html">Impressum</a></li>
+			<li><a href="datenschutz.html">Datenschutz</a></li>
+		</ul>
+	</nav>
+</footer>
+
+<div class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Artwork">
+	<button type="button" class="lightbox__close" aria-label="Close">&times;</button>
+	<button type="button" class="lightbox__nav lightbox__nav--prev" aria-label="Previous">&#8592;</button>
+	<figure class="lightbox__figure">
+		<img class="lightbox__img" src="" alt="">
+		<figcaption class="lightbox__caption"></figcaption>
+	</figure>
+	<button type="button" class="lightbox__nav lightbox__nav--next" aria-label="Next">&#8594;</button>
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

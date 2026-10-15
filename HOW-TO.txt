@@ -1,0 +1,44 @@
+YOUR PORTFOLIO – HOW TO PUT IT ONLINE AND KEEP IT UP TO DATE
+==========================================================
+
+What is in this folder
+  index.html          the page (you never need to edit this)
+  config.js           ALL your text, links and artwork list  <- the only file you edit
+  images/             your photos and artwork go here
+  style.css, script.js, assets/   design and behaviour
+  impressum.html, datenschutz.html   legal pages (German), fill in your details
+
+1. Fill in your content
+   Open config.js in any text editor (Notepad is fine). Change the text between the quotes.
+   Put your pictures in the images folder and list them under "works" (see the examples in the file).
+
+2. Look at it on your computer
+   Double-click index.html. It opens in your browser.
+
+3. Put it online with GitHub Pages (free)
+   a. Sign in at github.com and click New repository.
+      Name it  yourusername.github.io  (replace yourusername with your GitHub name), set it to Public, click Create.
+   b. Click "uploading an existing file", drag in EVERYTHING from this folder
+      (the files and the folders assets and images, plus the hidden file .nojekyll if your computer shows it), then Commit.
+   c. Open Settings > Pages. Under "Build and deployment" choose Deploy from a branch, branch main, folder / (root), Save.
+   d. After a minute your site is live at  https://yourusername.github.io
+
+4. Use your own free domain
+   Settings > Pages > Custom domain: type your domain and Save.
+   Then, at the place where you got the domain, add the DNS records GitHub shows you (the page tells you which).
+   Tick "Enforce HTTPS" when it becomes available.
+
+5. Add new artwork later
+   Upload the image into the images folder on GitHub (Add file > Upload files), then edit config.js
+   (click the file > pencil icon) and add one line to "works". Commit. Done.
+
+Before you publish
+  - Fill in impressum.html and datenschutz.html (German sites need an Impressum with a real address).
+    The privacy text is only a starting point, not legal advice.
+  - Your email address is visible in config.js and on the page. That is normal for a portfolio,
+    but expect some spam. Use a separate email address for it if you like.
+  - Make sure you have the right to publish every image.
+
+Fonts: Inter, SIL Open Font License (assets/fonts/INTER-LICENSE.txt). Nothing is loaded from other websites.
+The handwritten notes use the handwriting font your visitor's device has. To use one font everywhere,
+see the commented block at the top of style.css.
