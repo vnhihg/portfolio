@@ -23,6 +23,11 @@
 	font-display: swap;
 	src: url("assets/fonts/Inter-BlackItalic.otf") format("opentype");
 }
+@font-face {
+  font-family: "Handwriting";
+  src: url("assets/fonts/reenie-beanie.regular.ttf") format("truetype");
+  font-display: swap;
+}
 
 /* Optional: your own handwriting font (for example Caveat or Reenie Beanie, both free).
    1. Put the file in assets/fonts/ as handwriting.woff2
@@ -55,7 +60,7 @@
 	--font-bubble: "Inter Bubble", "Arial Black", Impact, sans-serif;
 	/* Handwriting uses whatever script font the visitor's device has. For an identical look everywhere,
 	   add a font file and enable the @font-face block above, then put "Handwriting" first in this stack. */
-	--font-hand: "Segoe Print", "Bradley Hand", "Noteworthy", "Chalkboard SE", "Comic Sans MS", cursive;
+	--font-hand: "Handwriting", "Segoe Print", "Bradley Hand", "Noteworthy", "Chalkboard SE", "Comic Sans MS", cursive;
 
 	--gutter: clamp(1rem, 4vw, 3rem);
 	--max: 1400px;
@@ -180,7 +185,7 @@ a:hover { text-decoration-style: wavy; }
 	display: inline-flex; align-items: center; gap: .5rem;
 	padding: .65rem 1.3rem; border: 1.5px solid var(--ink); border-radius: 999px;
 	background: transparent; color: var(--ink); font: inherit; font-size: .9rem;
-	text-decoration: none; cursor: pointer; transition: background .15s, color .15s, transform .15s;
+	text-decoration: none; cursor: pointer; transition: background-color .15s, color .15s, transform .15s;
 }
 .btn:hover { background: var(--ink); color: var(--paper); text-decoration: none; transform: translateY(-1px); }
 .btn--ink { background: var(--ink); color: var(--paper); }
@@ -216,13 +221,18 @@ a:hover { text-decoration-style: wavy; }
 	aspect-ratio: 16 / 10;
 	min-height: 480px;
 	overflow: hidden;
+
+	--photo-h: 80cqh;
+	--photo-top: 3%;
+	--name-top: 45%
+	--name-size: 16cqw;
 }
 .hero > * { position: absolute; margin: 0; }
 
-.hero__note { font-size: clamp(1rem, 3.4cqw, 3.2rem); z-index: 4; white-space: nowrap; }
+.hero__note { font-size: clamp(1rem, 3.4cqw, 3.2rem); z-index: 5; white-space: nowrap; }
 .hero__note--1 { left: 4%;  top: 6%;  transform: rotate(-3deg); }
-.hero__note--2 { left: 55%; top: 16%; transform: rotate(2deg); }
-.hero__note--3 { left: 26%; top: 27%; transform: rotate(-4deg); }
+.hero__note--2 { left: 67%; top: 9%; width: 28%;; transform: rotate(2deg); }
+.hero__note--3 { left: 6%; top: 36%; transform: rotate(-4deg); }
 
 .hero__name {
 	left: 2%; top: 30%; z-index: 3;
@@ -232,25 +242,38 @@ a:hover { text-decoration-style: wavy; }
 	/* multiply lets the photo show through the letters; the lighter pink makes up for the darkening */
 	color: color-mix(in srgb, var(--pink) 68%, #fff);
 	mix-blend-mode: multiply;
+
+	
+	z-index: 4;
+
+
 }
 .hero__name span { display: block; }
 .hero__last { margin-left: 22%; margin-top: .04em; }
 
 .hero__photo {
-	left: 50%; bottom: 0; z-index: 2; transform: translateX(-50%);
+	left: 50%; bottom: auto; z-index: 2; transform: translateX(-50%);
 	display: block; width: max-content;
-	mix-blend-mode: multiply;
+	mix-blend-mode: normal;
+
+	top: var(--photo-top);
+	opacity: .85;
+	-webkit-mask-image: linear-gradient(#000 62%, transparent 96%);
+	mask-image: linear-gradient(#000 62%, transparent 96%);
 }
 /* Height is set in cqh so the box hugs the picture (no empty strip beside it). */
-.hero__photo img { display: block; height: 94cqh; width: auto; max-width: 54cqw; object-fit: contain; object-position: bottom; }
+.hero__photo img { display: block; height: var(--photo-h); width: auto; max-width: 44cqw; object-fit: contain; object-position: bottom; 
+-webkit-mask-image: radial-gradient(circle at center, transparent 0 22%, #000 27%);
+mask-image: radial-gradient(circle at center, transparent 0 22%, #000 27%);
+-webkit-mask-size: 5px 5px;
+mask-size: 5px 5px;
+}
 
 /* Halftone look: greyscale, punchy contrast, paper-coloured dots in the shadows. */
 .halftone { position: relative; isolation: isolate; }
 .halftone img { filter: grayscale(1) contrast(1.4) brightness(1.03); }
 .halftone::after {
-	content: ""; position: absolute; inset: 0; pointer-events: none;
-	background: radial-gradient(circle at center, var(--paper) 0 30%, transparent 33%) 0 0 / 5px 5px;
-	mix-blend-mode: lighten; opacity: .65;
+	content: none;
 }
 
 .hero__role, .hero__by { bottom: 4%; font-size: clamp(.7rem, 1.35cqw, 1rem); color: var(--ink-soft); z-index: 4; }
@@ -259,14 +282,14 @@ a:hover { text-decoration-style: wavy; }
 .hero__hint { left: 50%; top: 52%; transform: translateX(-50%); font-size: clamp(.8rem, 1.6cqw, 1.1rem); color: var(--ink-soft); z-index: 5; text-align: center; max-width: 30ch; }
 
 @media (max-width: 720px) {
-	.hero { aspect-ratio: 4 / 5; min-height: 0; }
+	.hero { aspect-ratio: 4 / 5; min-height: 0; --photo-h: 60cqh; --name-top: 50%; --name-size: 22cqw; }
 	.hero__note { font-size: 4.4cqw; }
-	.hero__note--1 { left: 5%; top: 4%; }
-	.hero__note--2 { left: 60%; top: 11%; width: 36%; white-space: normal; }
-	.hero__note--3 { left: 8%; top: 22%; }
+	.hero__note--1 { left: 5%; top: 2%; }
+	.hero__note--2 { left: 67%; top: 11%; width: 30%; white-space: normal; }
+	.hero__note--3 { left: 6%; top: 40%; }
 	.hero__name { top: 30%; font-size: min(24cqw, calc(92cqw / (var(--chars) * .74))); left: 3%; }
 	.hero__last { margin-left: 14%; }
-	.hero__photo img { height: 80cqh; max-width: 80cqw; }
+	.hero__photo img { height: 80cqh; max-width: 70cqw; }
 	.hero__role, .hero__by { font-size: 3cqw; }
 }
 
@@ -285,7 +308,7 @@ a:hover { text-decoration-style: wavy; }
 .about__body .shout { margin-bottom: 1.25rem; }
 .about__cols { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 2rem; font-size: .92rem; }
 .about__text p { margin: 0 0 1em; }
-.about__list .hand { margin: 0 0 .4rem; color: var(--pink); font-size: 1.2rem; filter: saturate(1.2) brightness(.85); }
+.about__list .hand { margin: 0 0 .4rem; color: var(--pink); font-size: 1.7rem; filter: saturate(1.2) brightness(.85); }
 .about__list ul { margin: 0; padding-left: 1.1rem; }
 .about__list li { margin-bottom: .2rem; }
 
@@ -317,7 +340,7 @@ a:hover { text-decoration-style: wavy; }
 .work__link { display: block; cursor: zoom-in; }
 .work__img { display: block; width: 100%; height: auto; }
 .work__cap { padding: .6rem .25rem .85rem; display: flex; flex-direction: column; gap: .1rem; }
-.work__title { font-family: var(--font-hand); font-size: 1.1rem; line-height: 1.2; }
+.work__title { font-family: var(--font-hand); font-size: 1.5rem; line-height: 1.2; }
 .work__detail { font-size: .75rem; color: var(--grey); }
 
 .work--empty .work__ph { aspect-ratio: 4 / 5; border: 2px dashed var(--pink); background: color-mix(in srgb, var(--pink) 12%, transparent); }
@@ -359,15 +382,15 @@ a:hover { text-decoration-style: wavy; }
 .note {
 	position: relative; z-index: 2; margin: -40px 6% 0; padding: 2rem 2rem 8rem;
 	background-color: var(--card);
-	background-image: repeating-linear-gradient(transparent 0 1.9rem, rgba(70,100,160,.22) 1.9rem calc(1.9rem + 1px));
+	background-image: repeating-linear-gradient(transparent 0 2.4rem, rgba(70,100,160,.22) 2.4rem calc(2.4rem + 1px));
 	box-shadow: 0 6px 16px -8px rgba(40,25,20,.5);
 	transform: rotate(-1.2deg);
 }
-.note__intro { font-size: 1.15rem; margin: 0 0 1.25rem; line-height: 1.7rem; }
+.note__intro { font-size: 1.7rem; margin: 0 0 1.25rem; line-height: 2.4rem; }
 .note__field { display: block; margin-bottom: .9rem; }
 .note__field span { display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--grey); }
 .note__field input, .note__field textarea {
-	width: 100%; font-family: var(--font-hand); font-size: 1.1rem; color: var(--ink);
+	width: 100%; font-family: var(--font-hand); font-size: 1.6rem; color: var(--ink);
 	background: transparent; border: 0; border-bottom: 1.5px solid var(--ink); padding: .25rem 0; border-radius: 0; resize: vertical;
 }
 .note__field input:focus, .note__field textarea:focus { outline: none; border-bottom-color: var(--pink); box-shadow: 0 2px 0 var(--pink); }

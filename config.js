@@ -4,17 +4,17 @@
   Type | in a headline where you want the line to break.
 */
 window.PORTFOLIO = {
-  siteTitle: "Your Name – Portfolio",
+  siteTitle: "Nhi Hoang – Portfolio",
 
   /* ---- Top of the page ---- */
-  name: "Your Name",                 // first and last name go on two lines
+  name: "Nhi Hoang",                 // first and last name go on two lines
   role: "Artist / Illustrator",
   notes: [                           // the three handwritten notes
     "Hi. Since you're new here.",
     "let me be your guide.",
     "This is"
   ],
-  heroImage: "",                     // e.g. "images/me.png"  (a cut-out PNG looks best; leave "" for none)
+  heroImage: "images/hero_image.png",                     // e.g. "images/me.png"  (a cut-out PNG looks best; leave "" for none)
 
   /* ---- About ---- */
   aboutHeadline: "it's not just art, | it's vibing with colour.",
@@ -24,11 +24,11 @@ window.PORTFOLIO = {
   ],
   aboutList: ["Illustration", "Painting", "Commissions", "Prints & zines"],
   aboutImage: "",                    // e.g. "images/about.jpg"
-  handle: "@yourhandle",
-  instagram: "",                     // e.g. "https://instagram.com/yourhandle"
+  handle: "@vannni.h",
+  instagram: "https://www.instagram.com/vannni.h/",                     // e.g. "https://instagram.com/vannni.h"
 
   /* ---- Contact ---- */
-  email: "you@example.com",
+  email: "vn.hoang@gmx.de",
   contactHeading: "and that's | a wrap.",
   contactNote: "Thank you so much for taking the time to look through my portfolio. If you'd like to work together, I'd love to chat.",
 
@@ -40,7 +40,10 @@ window.PORTFOLIO = {
      2. Add one line per piece below (newest or favourite first)
      Tip: JPG or WebP, around 1600 px on the long side, under 500 KB each, keeps the page fast. */
   works: [
-    // { image: "images/pink-garden.jpg", title: "Pink Garden", detail: "Gouache on paper, 2026" },
-    // { image: "images/blue-hour.jpg",   title: "Blue Hour",   detail: "Digital, 2025" },
+     { image: "images/DU_farm_pos.png", title: "Famer's Market", detail: "Mock-up poster" },
+     { image: "images/Museum_pos.png",   title: "Von Kopf bis Pfote",   detail: "Mock-up flyer for an exhibition " },
+     { image: "images/lgbt_pos.png",   title: "Same sex marriage",   detail: "Instagram post for ISEE on LGBT marriage acceptance survey" },
+     { image: "images/girlsday_pos.png",   title: "Girls in science",   detail: "Mock-up Instagram post for an event" },
+     { image: "images/pigeon_pos.png",   title: "Percival the Pigeon",   detail: "Character design for WDR Azubi Audiobook project" },
   ]
 };
