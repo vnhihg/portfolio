@@ -20,7 +20,7 @@
 		String(text || '').split('|').slice(0, 2).forEach(function (part) { h.appendChild(el('span', null, part.trim())); });
 		return h;
 	}
-	function safeUrl(u) { return /^(https?:\/\/|images\/|\.\/|\/)/i.test(u || '') ? u : ''; }
+	function safeUrl(u) { return /^(https?:\/\/|images\/|files\/|\.\/|\/)/i.test(u || '') ? u : ''; }
 	var $ = function (sel) { return document.querySelector(sel); };
 
 	/* ---------- page basics ---------- */
@@ -112,6 +112,45 @@
 		for (var i = 0; i < 6; i++) {
 			add(grid, add(el('figure', 'work work--empty', null, { 'aria-hidden': 'true' }), el('div', 'work__ph'), add(el('figcaption', 'work__cap'), el('span', 'work__title', 'your artwork'))));
 		}
+	}
+
+	/* ---------- my story ---------- */
+	var storyTitle = $('#story-title');
+	if (storyTitle && C.storyHeading) { storyTitle.textContent = C.storyHeading; }
+	var chapters = $('#story-chapters');
+	(C.story || []).forEach(function (ch, i) {
+		if (!ch) { return; }
+		var article = el('article', 'story__chapter' + (i % 2 ? ' story__chapter--flip' : ''));
+		add(article, el('p', 'story__text', ch.text || ''));
+		var photos = el('div', 'story__photos');
+		(ch.photos || []).slice(0, 2).forEach(function (p, j) {
+			if (!p || !safeUrl(p.image)) { return; }
+			var fig = el('figure', 'polaroid story__photo story__photo--' + (j + 1));
+			add(fig,
+				el('span', 'tape', null, { 'aria-hidden': 'true' }),
+				el('img', null, null, { src: p.image, alt: p.alt || p.label || 'Photo of me', loading: 'lazy' }),
+				p.label ? el('figcaption', 'hand story__label', p.label) : null);
+			add(photos, fig);
+		});
+		add(photos, el('span', 'story__squiggle', null, { 'aria-hidden': 'true' }));
+		add(article, photos, ch.highlight ? el('p', 'story__highlight', ch.highlight) : null);
+		if (i < C.story.length - 1) {
+			add(article, el('span', 'story__connector' + (i % 2 ? ' story__connector--rtl' : ''), null, { 'aria-hidden': 'true' }));
+		}
+		add(chapters, article);
+	});
+
+	/* ---------- resume ---------- */
+	var resumeTitle = $('#resume-title');
+	if (resumeTitle && C.resumeHeading) { resumeTitle.textContent = C.resumeHeading; }
+	var resumeCard = $('#resume-card');
+	if (safeUrl(C.resumeLink)) {
+		add(resumeCard,
+			el('span', 'tape', null, { 'aria-hidden': 'true' }),
+			el('p', 'resume__note hand', C.resumeNote || ''),
+			add(el('a', 'btn btn--ink', (C.resumeButton || 'Open my CV') + ' ↗', { href: C.resumeLink, target: '_blank', rel: 'noopener' })));
+	} else {
+		resumeCard.hidden = true;
 	}
 
 	/* ---------- contact (the form opens the visitor's own email app) ---------- */

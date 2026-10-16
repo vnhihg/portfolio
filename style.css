@@ -317,7 +317,7 @@ mask-size: 5px 5px;
 .about__media { position: relative; max-width: 380px; margin: 0 auto; width: 100%; }
 .scribble {
 	position: absolute; right: -52%; bottom: -6%; width: 62%; aspect-ratio: 2 / 1; pointer-events: none;
-	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' fill='none' stroke='%231c1b1a' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M4 70 C 30 10, 52 100, 84 52 S 120 8, 100 40 S 150 84, 190 40' stroke-dasharray='2 6'/%3E%3Cpath d='M180 30 L192 40 L178 50'/%3E%3C/svg%3E") center / contain no-repeat;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' fill='none' stroke='%231c1b1a' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 70 C 30 10, 52 100, 84 52 S 120 8, 100 40 S 150 84, 190 40' pathLength='100' stroke-dasharray='0.8 3.2' stroke-dashoffset='0.8'/%3E%3Cpath d='M176.4 43.1 L190 40 L188.2 53.9'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 .about__body .shout { margin-bottom: 1.25rem; }
 .about__cols { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 2rem; font-size: .92rem; }
@@ -480,3 +480,101 @@ mask-size: 5px 5px;
 	.lightbox__nav--prev { left: 1rem; }
 	.lightbox__nav--next { right: 1rem; }
 }
+
+/* ==========================================================================
+   My story
+   ========================================================================== */
+.story { max-width: var(--max); margin: 0 auto; padding: clamp(2rem, 6vw, 5rem) var(--gutter); }
+.story__chapters { --story-gap: clamp(4rem, 9vw, 8rem); display: grid; gap: var(--story-gap); }
+
+.story__chapter {
+	position: relative;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+	grid-template-areas:
+		"text   photos"
+		"quote  photos";
+	column-gap: clamp(2rem, 6vw, 6rem);
+	row-gap: 2rem;
+	align-items: start;
+}
+.story__chapter--flip {
+	grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+	grid-template-areas:
+		"photos text"
+		"photos quote";
+}
+.story__text { grid-area: text; margin: 0; font-size: .92rem; max-width: 34ch; }
+.story__chapter--flip .story__text { justify-self: end; }
+
+.story__photos {
+	grid-area: photos; position: relative;
+	display: grid; grid-template-columns: repeat(2, minmax(0, 250px));
+	gap: clamp(1rem, 3vw, 2.5rem); align-items: start;
+	/* hugs the photos so the arrow can end exactly at their edge */
+	justify-self: center; width: min(100%, calc(500px + clamp(1rem, 3vw, 2.5rem)));
+}
+.story__photo { width: 100%; }
+.story__photo--1 { transform: rotate(-3deg); margin-top: 1.5rem; }
+.story__photo--2 { transform: rotate(2.5deg); margin-top: 4.5rem; }
+.story__photo img { aspect-ratio: 4 / 5; object-fit: cover; }
+.story__label {
+	position: absolute; left: .7rem; right: .7rem; bottom: .5rem;
+	text-align: center; font-size: 1.4rem; color: var(--ink-soft);
+}
+
+.story__highlight {
+	grid-area: quote; margin: 0; max-width: 30ch;
+	font-weight: 800; font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.3; letter-spacing: -.01em;
+}
+.story__chapter--flip .story__highlight { justify-self: end; text-align: right; }
+.story__highlight strong, .story__text strong { font-weight: 800; }
+
+/* dotted scribble that links the text to the photos */
+.story__squiggle {
+	/* lives inside .story__photos: its tip (95% across) lands on the left edge of the first photo */
+	--sq-w: clamp(90px, 18vw, 260px);
+	position: absolute; top: 3rem; width: var(--sq-w); aspect-ratio: 2 / 1; pointer-events: none;
+	right: calc(100% - var(--sq-w) * .05 + .6rem);
+	/* pathLength=100 + dash period 4 + offset .8 makes the last dot land exactly on the arrow tip;
+	   the arrowhead is angled to follow the curve's final direction. */
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' fill='none' stroke='%231c1b1a' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 70 C 30 10, 52 100, 84 52 S 120 8, 100 40 S 150 84, 190 40' pathLength='100' stroke-dasharray='0.8 3.2' stroke-dashoffset='0.8'/%3E%3Cpath d='M176.4 43.1 L190 40 L188.2 53.9'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.story__chapter--flip .story__squiggle { right: auto; left: calc(100% - var(--sq-w) * .05 + .6rem); transform: scaleX(-1); }
+
+/* Trail from one chapter into the next. The curve stretches to fit; the arrowhead stays crisp. */
+.story__connector {
+	position: absolute; left: 25%; width: 45%; top: 100%; height: calc(var(--story-gap) + 1rem);
+	pointer-events: none;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none' fill='none' stroke='%231c1b1a' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M100 0 C 100 60, 0 40, 0 100' vector-effect='non-scaling-stroke' stroke-dasharray='2 7'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+}
+.story__connector::after {
+	content: ""; position: absolute; left: -11px; bottom: -4px; width: 22px; height: 22px;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22' fill='none' stroke='%231c1b1a' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 6 L11 18 L19 6'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+/* every second link runs the other way (right to left becomes left to right) */
+.story__connector--rtl { left: 30%; transform: scaleX(-1); }
+
+@media (max-width: 860px) {
+	.story__chapter, .story__chapter--flip {
+		grid-template-columns: 1fr;
+		grid-template-areas: "text" "photos" "quote";
+	}
+	.story__chapter--flip .story__text, .story__chapter--flip .story__highlight { justify-self: start; text-align: left; }
+	.story__text, .story__highlight { max-width: none; }
+	.story__squiggle, .story__connector { display: none; }
+	.story__photo--2 { margin-top: 2.5rem; }
+}
+
+/* ==========================================================================
+   Resume
+   ========================================================================== */
+.resume { max-width: var(--max); margin: 0 auto; padding: clamp(2rem, 6vw, 5rem) var(--gutter) clamp(2rem, 5vw, 4rem); }
+.resume__card {
+	position: relative; max-width: 560px; margin: 1rem 0 0 .5rem; padding: 2.5rem 2rem 2rem;
+	background-color: var(--card);
+	background-image: repeating-linear-gradient(transparent 0 2.4rem, rgba(70,100,160,.22) 2.4rem calc(2.4rem + 1px));
+	box-shadow: 0 8px 20px -12px rgba(40,25,20,.5), 0 1px 2px rgba(0,0,0,.12);
+	transform: rotate(-1.2deg);
+}
+.resume__note { margin: 0 0 1.25rem; font-size: 1.9rem; line-height: 2.4rem; }
