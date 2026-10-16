@@ -28,6 +28,11 @@
   src: url("assets/fonts/reenie-beanie.regular.ttf") format("truetype");
   font-display: swap;
 }
+@font-face {
+	font-family: "Bubble";
+	src: url(assets/fonts/DFVN-GochiHand.ttf);
+	font-display: swap;
+}
 
 /* Optional: your own handwriting font (for example Caveat or Reenie Beanie, both free).
    1. Put the file in assets/fonts/ as handwriting.woff2
@@ -57,7 +62,7 @@
 
 	--font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 	--font-tight: "Inter Display", "Inter", system-ui, sans-serif;
-	--font-bubble: "Inter Bubble", "Arial Black", Impact, sans-serif;
+	--font-bubble: "Bubble", "Arial Black", Impact, sans-serif;
 	/* Handwriting uses whatever script font the visitor's device has. For an identical look everywhere,
 	   add a font file and enable the @font-face block above, then put "Handwriting" first in this stack. */
 	--font-hand: "Handwriting", "Segoe Print", "Bradley Hand", "Noteworthy", "Chalkboard SE", "Comic Sans MS", cursive;
@@ -66,10 +71,9 @@
 	--max: 1400px;
 
 	/* Rounded "puffy" outline used for the bubble lettering. */
+	--puff-r: .01em;
 	--puff: 0.012em 0.000em 0 currentColor, 0.010em 0.007em 0 currentColor, 0.004em 0.011em 0 currentColor, -0.004em 0.011em 0 currentColor, -0.010em 0.007em 0 currentColor, -0.012em 0.000em 0 currentColor, -0.010em -0.007em 0 currentColor, -0.004em -0.011em 0 currentColor, 0.004em -0.011em 0 currentColor, 0.010em -0.007em 0 currentColor, 0.024em 0.005em 0 currentColor, 0.020em 0.013em 0 currentColor, 0.013em 0.020em 0 currentColor, 0.005em 0.024em 0 currentColor, -0.005em 0.024em 0 currentColor, -0.013em 0.020em 0 currentColor, -0.020em 0.013em 0 currentColor, -0.024em 0.005em 0 currentColor, -0.024em -0.005em 0 currentColor, -0.020em -0.013em 0 currentColor, -0.013em -0.020em 0 currentColor, -0.005em -0.024em 0 currentColor, 0.005em -0.024em 0 currentColor, 0.013em -0.020em 0 currentColor, 0.020em -0.013em 0 currentColor, 0.024em -0.005em 0 currentColor, 0.032em 0.005em 0 currentColor, 0.029em 0.013em 0 currentColor, 0.024em 0.021em 0 currentColor, 0.017em 0.027em 0 currentColor, 0.009em 0.031em 0 currentColor, 0.000em 0.032em 0 currentColor, -0.009em 0.031em 0 currentColor, -0.017em 0.027em 0 currentColor, -0.024em 0.021em 0 currentColor, -0.029em 0.013em 0 currentColor, -0.032em 0.005em 0 currentColor, -0.032em -0.005em 0 currentColor, -0.029em -0.013em 0 currentColor, -0.024em -0.021em 0 currentColor, -0.017em -0.027em 0 currentColor, -0.009em -0.031em 0 currentColor, -0.000em -0.032em 0 currentColor, 0.009em -0.031em 0 currentColor, 0.017em -0.027em 0 currentColor, 0.024em -0.021em 0 currentColor, 0.029em -0.013em 0 currentColor, 0.032em -0.005em 0 currentColor;
 
-	 --puff-r: .04em;   /* was .032em. Bigger = puffier. Stay under about .045em */
-  --puff: calc(var(--puff-r) * 1.000) calc(var(--puff-r) * 0.000) 0 currentColor, calc(var(--puff-r) * 0.981) calc(var(--puff-r) * 0.195) 0 currentColor, calc(var(--puff-r) * 0.924) calc(var(--puff-r) * 0.383) 0 currentColor, calc(var(--puff-r) * 0.831) calc(var(--puff-r) * 0.556) 0 currentColor, calc(var(--puff-r) * 0.707) calc(var(--puff-r) * 0.707) 0 currentColor, calc(var(--puff-r) * 0.556) calc(var(--puff-r) * 0.831) 0 currentColor, calc(var(--puff-r) * 0.383) calc(var(--puff-r) * 0.924) 0 currentColor, calc(var(--puff-r) * 0.195) calc(var(--puff-r) * 0.981) 0 currentColor, calc(var(--puff-r) * 0.000) calc(var(--puff-r) * 1.000) 0 currentColor, calc(var(--puff-r) * -0.195) calc(var(--puff-r) * 0.981) 0 currentColor, calc(var(--puff-r) * -0.383) calc(var(--puff-r) * 0.924) 0 currentColor, calc(var(--puff-r) * -0.556) calc(var(--puff-r) * 0.831) 0 currentColor, calc(var(--puff-r) * -0.707) calc(var(--puff-r) * 0.707) 0 currentColor, calc(var(--puff-r) * -0.831) calc(var(--puff-r) * 0.556) 0 currentColor, calc(var(--puff-r) * -0.924) calc(var(--puff-r) * 0.383) 0 currentColor, calc(var(--puff-r) * -0.981) calc(var(--puff-r) * 0.195) 0 currentColor, calc(var(--puff-r) * -1.000) calc(var(--puff-r) * 0.000) 0 currentColor, calc(var(--puff-r) * -0.981) calc(var(--puff-r) * -0.195) 0 currentColor, calc(var(--puff-r) * -0.924) calc(var(--puff-r) * -0.383) 0 currentColor, calc(var(--puff-r) * -0.831) calc(var(--puff-r) * -0.556) 0 currentColor, calc(var(--puff-r) * -0.707) calc(var(--puff-r) * -0.707) 0 currentColor, calc(var(--puff-r) * -0.556) calc(var(--puff-r) * -0.831) 0 currentColor, calc(var(--puff-r) * -0.383) calc(var(--puff-r) * -0.924) 0 currentColor, calc(var(--puff-r) * -0.195) calc(var(--puff-r) * -0.981) 0 currentColor, calc(var(--puff-r) * -0.000) calc(var(--puff-r) * -1.000) 0 currentColor, calc(var(--puff-r) * 0.195) calc(var(--puff-r) * -0.981) 0 currentColor, calc(var(--puff-r) * 0.383) calc(var(--puff-r) * -0.924) 0 currentColor, calc(var(--puff-r) * 0.556) calc(var(--puff-r) * -0.831) 0 currentColor, calc(var(--puff-r) * 0.707) calc(var(--puff-r) * -0.707) 0 currentColor, calc(var(--puff-r) * 0.831) calc(var(--puff-r) * -0.556) 0 currentColor, calc(var(--puff-r) * 0.924) calc(var(--puff-r) * -0.383) 0 currentColor, calc(var(--puff-r) * 0.981) calc(var(--puff-r) * -0.195) 0 currentColor;
 }
 
 /* ==========================================================================
@@ -159,6 +163,8 @@ a:hover { text-decoration-style: wavy; }
 	transform-origin: left center;
 	margin: 0 0 2.5rem;
 	padding-left: .08em;
+	letter-spacing: .06em;
+	text-shadow: 0.025em 0.000em 0 currentColor, 0.023em 0.010em 0 currentColor, 0.018em 0.018em 0 currentColor, 0.010em 0.023em 0 currentColor, 0.000em 0.025em 0 currentColor, -0.010em 0.023em 0 currentColor, -0.018em 0.018em 0 currentColor, -0.023em 0.010em 0 currentColor, -0.025em 0.000em 0 currentColor, -0.023em -0.010em 0 currentColor, -0.018em -0.018em 0 currentColor, -0.010em -0.023em 0 currentColor, -0.000em -0.025em 0 currentColor, 0.010em -0.023em 0 currentColor, 0.018em -0.018em 0 currentColor, 0.023em -0.010em 0 currentColor;
 }
 
 /* Tight grey grotesque headlines. */
@@ -238,9 +244,11 @@ a:hover { text-decoration-style: wavy; }
 .hero__note--3 { left: 8%; top: 28%; transform: rotate(-4deg); }
 
 .hero__name {
-	left: 2%; top: 37%; z-index: 3;
+	left: 0; top: 35%; 
+	z-index: 3;
 	--chars: 6;
-	font-size: min(24cqw, calc(80cqw / (var(--chars, 5) * .8)));
+	width: 100%;
+	font-size: min(22cqw, calc(86cqw / (var(--chars, 5) * .7)));
 	text-transform: uppercase;
 	/* multiply lets the photo show through the letters; the lighter pink makes up for the darkening */
 	color: color-mix(in srgb, var(--pink) 68%, #fff);
@@ -253,7 +261,8 @@ a:hover { text-decoration-style: wavy; }
 
 }
 .hero__name span { display: block; }
-.hero__last { margin-left: 14%; margin-top: .04em; }
+.hero__first {margin-left: 5%;}
+.hero__last { margin-left: 0%; margin-right: 4%; margin-top: .04em; text-align: right; }
 
 .hero__photo {
 	left: 50%; bottom: auto; z-index: 2; transform: translateX(-50%);
@@ -291,8 +300,9 @@ mask-size: 5px 5px;
 	.hero__note--1 { left: 5%; top: 2%; }
 	.hero__note--2 { left: 67%; top: 11%; width: 30%; white-space: normal; }
 	.hero__note--3 { left: 6%; top: 38%; }
-	.hero__name { top: 46%; font-size: min(30cqw, calc(84cqw / (var(--chars, 5) * .8))); left: 3%; }
-	.hero__last { margin-left: 14%; }
+	.hero__name { top: 46%; font-size: min(92cqw, calc(84cqw / (var(--chars, 5) * .7))); left: 3%; }
+	.hero__first { margin-left: 4%; }
+	.hero__last { margin-left: 0%; }
 	.hero__photo img { height: 58cqh; max-width: 70cqw; }
 	.hero__role, .hero__by { font-size: 3cqw; }
 }
