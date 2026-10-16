@@ -7,10 +7,10 @@ window.PORTFOLIO = {
   siteTitle: "Nhi Hoang – Portfolio",
 
   /* ---- Top of the page ---- */
-  name: "Nhi Hoang",                 // first and last name go on two lines
+  name: "Nhi Hoàng",                 // first and last name go on two lines
   role: "Artist / Illustrator",
   notes: [                           // the three handwritten notes
-    "Hi. Since you're new here.",
+    "Hi. Since you're new here,",
     "let me be your guide.",
     "This is"
   ],
@@ -19,11 +19,11 @@ window.PORTFOLIO = {
   /* ---- About ---- */
   aboutHeadline: "it's not just art, | it's vibing with colour.",
   aboutText: [
-    "Tell people who you are in a few warm, honest sentences. Where you started drawing, what keeps you making things, and what you want to make next.",
-    "Keep it short and a little cheeky. This is a scrapbook, not a CV."
+    "Hi, I'm Nhi. I make art and illustrations that are colourful, playful, and a little cheeky. I love to blend codes and colors to create a unique visuals. My work is inspired by everyday life, pop culture, and the beauty of imperfection.",
+    "This is my portfolio scrapbook. Here you'll find a selection of my work, from personal projects to commissions."
   ],
   aboutList: ["Illustration", "Painting", "Commissions", "Prints & zines"],
-  aboutImage: "",                    // e.g. "images/about.jpg"
+  aboutImage: "images/body_img.jpg",                    // e.g. "images/about.jpg"
   handle: "@vannni.h",
   instagram: "https://www.instagram.com/vannni.h/",                     // e.g. "https://instagram.com/vannni.h"
 
