@@ -22,10 +22,10 @@ window.PORTFOLIO = {
     "Hi, I'm Nhi. I make art and illustrations that are colourful, playful, and a little cheeky. I love to blend codes and colors to create a unique visuals. My work is inspired by everyday life, pop culture, and the beauty of imperfection.",
     "This is my portfolio scrapbook. Here you'll find a selection of my work, from personal projects to commissions."
   ],
-  aboutList: ["Illustration", "Painting", "Commissions", "Prints & zines"],
-  aboutImage: "images/body_img.jpg",                    // e.g. "images/about.jpg"
+  aboutList: ["Illustration", "Painting", "Commissions", "Websites (from scratch or with various CMS)"],
+  aboutImage: "images/body_img.jpg",
   handle: "@vannni.h",
-  instagram: "https://www.instagram.com/vannni.h/",                     // e.g. "https://instagram.com/vannni.h"
+  instagram: "https://www.instagram.com/vannni.h/",                     
 
   /* ---- Contact ---- */
   email: "vn.hoang@gmx.de",
