@@ -218,7 +218,7 @@ a:hover { text-decoration-style: wavy; }
 	container-type: size; /* lets children size themselves in cqw / cqh */
 	max-width: var(--max);
 	margin: 0 auto;
-	aspect-ratio: 16 / 10;
+	aspect-ratio: 16 / 11;
 	min-height: 480px;
 	overflow: hidden;
 
@@ -232,16 +232,17 @@ a:hover { text-decoration-style: wavy; }
 .hero__note { font-size: clamp(1rem, 3.4cqw, 3.2rem); z-index: 5; white-space: nowrap; }
 .hero__note--1 { left: 4%;  top: 6%;  transform: rotate(-3deg); }
 .hero__note--2 { left: 67%; top: 9%; width: 28%;; transform: rotate(2deg); }
-.hero__note--3 { left: 6%; top: 36%; transform: rotate(-4deg); }
+.hero__note--3 { left: 8%; top: 28%; transform: rotate(-4deg); }
 
 .hero__name {
-	left: 2%; top: 30%; z-index: 3;
+	left: 2%; top: 37%; z-index: 3;
 	--chars: 6;
-	font-size: min(19cqw, calc(86cqw / (var(--chars) * .74)));
+	font-size: min(24cqw, calc(80cqw / (var(--chars, 5) * .8)));
 	text-transform: uppercase;
 	/* multiply lets the photo show through the letters; the lighter pink makes up for the darkening */
 	color: color-mix(in srgb, var(--pink) 68%, #fff);
-	mix-blend-mode: multiply;
+	mix-blend-mode: normal;
+	white-space: nowrap;
 
 	
 	z-index: 4;
@@ -249,20 +250,20 @@ a:hover { text-decoration-style: wavy; }
 
 }
 .hero__name span { display: block; }
-.hero__last { margin-left: 22%; margin-top: .04em; }
+.hero__last { margin-left: 14%; margin-top: .04em; }
 
 .hero__photo {
 	left: 50%; bottom: auto; z-index: 2; transform: translateX(-50%);
 	display: block; width: max-content;
 	mix-blend-mode: normal;
 
-	top: var(--photo-top);
+	top: 3%;
 	opacity: .85;
 	-webkit-mask-image: linear-gradient(#000 62%, transparent 96%);
 	mask-image: linear-gradient(#000 62%, transparent 96%);
 }
 /* Height is set in cqh so the box hugs the picture (no empty strip beside it). */
-.hero__photo img { display: block; height: var(--photo-h); width: auto; max-width: 44cqw; object-fit: contain; object-position: bottom; 
+.hero__photo img { display: block; height: 80cqh; width: auto; max-width: 44cqw; object-fit: contain; object-position: bottom; 
 -webkit-mask-image: radial-gradient(circle at center, transparent 0 22%, #000 27%);
 mask-image: radial-gradient(circle at center, transparent 0 22%, #000 27%);
 -webkit-mask-size: 5px 5px;
@@ -286,10 +287,10 @@ mask-size: 5px 5px;
 	.hero__note { font-size: 4.4cqw; }
 	.hero__note--1 { left: 5%; top: 2%; }
 	.hero__note--2 { left: 67%; top: 11%; width: 30%; white-space: normal; }
-	.hero__note--3 { left: 6%; top: 40%; }
-	.hero__name { top: 30%; font-size: min(24cqw, calc(92cqw / (var(--chars) * .74))); left: 3%; }
+	.hero__note--3 { left: 6%; top: 38%; }
+	.hero__name { top: 46%; font-size: min(30cqw, calc(84cqw / (var(--chars, 5) * .8))); left: 3%; }
 	.hero__last { margin-left: 14%; }
-	.hero__photo img { height: 80cqh; max-width: 70cqw; }
+	.hero__photo img { height: 58cqh; max-width: 70cqw; }
 	.hero__role, .hero__by { font-size: 3cqw; }
 }
 
@@ -364,7 +365,7 @@ mask-size: 5px 5px;
 .contact__links li { display: flex; align-items: center; gap: .6rem; }
 .contact__links a { text-decoration-color: var(--ink); }
 
-.envelope { position: relative; max-width: 760px; margin: 6.5rem auto 0; padding-top: 0; }
+.envelope { position: relative; max-width: 760px; margin: 6.5rem auto 0; padding-top: 0; padding-bottom: 22px; }
 .envelope__back {
 	position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: var(--pink-soft); border-radius: 6px;
 	box-shadow: 0 18px 30px -18px rgba(40,25,20,.5);
