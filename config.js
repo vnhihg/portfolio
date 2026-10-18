@@ -73,7 +73,7 @@ window.PORTFOLIO = {
      { image: "images/Museum_pos.png",   title: "Von Kopf bis Pfote",   detail: "Mock-up flyer for an exhibition " },
      { image: "images/lgbt_pos.png",   title: "Same sex marriage",   detail: "Instagram post for ISEE on LGBT marriage acceptance survey" },
      { image: "images/girlsday_pos.png",   title: "Girls in science",   detail: "Mock-up Instagram post for an event" },
-     { image: "images/pigeon_pos.png",   title: "Percival the Pigeon",   detail: "Character design for WDR Azubi Audiobook project" },
+     { image: "images/pigeon_pos.png",   title: "Percival the Pigeon",   detail: "Character design for an Audiobook project" },
     { image: "images/cologne_illust.png",   title: "Köln",   detail: "Hand-drawn illustration of Cologne" },
   ]
 };
