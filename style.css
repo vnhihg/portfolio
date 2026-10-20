@@ -276,15 +276,18 @@ a:hover { text-decoration-style: wavy; }
 }
 /* Height is set in cqh so the box hugs the picture (no empty strip beside it). */
 .hero__photo img { display: block; height: 80cqh; width: auto; max-width: 44cqw; object-fit: contain; object-position: bottom; 
--webkit-mask-image: radial-gradient(circle at center, transparent 0 22%, #000 27%);
-mask-image: radial-gradient(circle at center, transparent 0 22%, #000 27%);
--webkit-mask-size: 5px 5px;
-mask-size: 5px 5px;
+/* Halftone dots. Two knobs:
+   - mask-size = spacing between dots (bigger = fewer dots)
+   - the first alpha value = how see-through the dots are (1 = no dots visible, 0 = fully cut out) */
+-webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,.6) 0 22%, #000 27%);
+mask-image: radial-gradient(circle at center, rgba(0,0,0,.6) 0 22%, #000 27%);
+-webkit-mask-size: 9px 9px;
+mask-size: 9px 9px;
 }
 
 /* Halftone look: greyscale, punchy contrast, paper-coloured dots in the shadows. */
 .halftone { position: relative; isolation: isolate; }
-.halftone img { filter: grayscale(1) contrast(1.4) brightness(1.03); }
+.halftone img { filter: grayscale(0.25) contrast(1.4) brightness(1.03); }
 .halftone::after {
 	content: none;
 }
@@ -461,10 +464,6 @@ mask-size: 5px 5px;
 .aligncenter { display: block; margin-left: auto; margin-right: auto; }
 .wp-caption-text, figcaption { font-size: .8rem; color: var(--grey); }
 
-@media (prefers-reduced-motion: reduce) {
-	html { scroll-behavior: auto; }
-	* { transition: none !important; }
-}
 
 /* Lightbox arrows (static site) */
 .lightbox__nav {
@@ -578,3 +577,32 @@ mask-size: 5px 5px;
 	transform: rotate(-1.2deg);
 }
 .resume__note { margin: 0 0 1.25rem; font-size: 1.9rem; line-height: 2.4rem; }
+
+/* ==========================================================================
+   Motion (plays for everyone, regardless of the visitor's system animation setting)
+   ========================================================================== */
+/* 1. slow float on the sticker-like polaroids. Uses `translate`, so it never fights the tilt (`transform`). */
+@keyframes bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -9px; } }
+.about__media .polaroid { animation: bob 6s ease-in-out infinite; }
+.story__photo--1 { animation: bob 7s ease-in-out infinite; }
+.story__photo--2 { animation: bob 8s ease-in-out -3s infinite; } /* negative delay = out of step with photo 1 */
+
+/* hero flowers: behind the photo (z 2) and the name (z 4), spinning slowly */
+@keyframes flower-spin { to { transform: rotate(360deg); } }
+.hero__flower { z-index: 1; height: auto; max-width: none; pointer-events: none; animation: flower-spin 24s linear infinite; }
+
+/* 2. polaroids straighten up and the tape wiggles on hover */
+.polaroid { transition: transform .3s ease, box-shadow .3s ease; }
+.polaroid:hover { transform: rotate(0deg) scale(1.04); box-shadow: 0 16px 28px -14px rgba(40,25,20,.6), 0 1px 3px rgba(0,0,0,.15); }
+.polaroid .tape { transition: transform .3s ease; }
+.polaroid:hover .tape { transform: rotate(-9deg); }
+
+/* 3. hero notes appear one after another */
+/* typewriter: every letter starts hidden, script.js reveals them one by one once the page has loaded */
+.hero__note .tw { opacity: 0; }
+.hero__note .tw.on { opacity: 1; }
+
+/* 4. dotted arrows draw themselves in once they scroll into view (script.js adds .anim, .draw and .is-drawn) */
+.anim .draw { clip-path: inset(0 100% 0 0); transition: clip-path 1.5s ease-out; }
+.anim .story__connector.draw { clip-path: inset(0 0 100% 0); transition-duration: 1.8s; } /* this one draws top to bottom */
+.anim .draw.is-drawn { clip-path: inset(-24px); }

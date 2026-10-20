@@ -41,8 +41,28 @@
 	var hero = $('#top');
 	var notes = C.notes || [];
 	[0, 1, 2].forEach(function (i) {
-		if (notes[i]) { add(hero, el('p', 'hand hero__note hero__note--' + (i + 1), notes[i])); }
+		if (!notes[i]) { return; }
+		// Every letter gets its own span (hidden at first) so the layout never jumps while typing.
+		// Screen readers get the full sentence from a hidden copy.
+		var p = el('p', 'hand hero__note hero__note--' + (i + 1));
+		var typed = el('span', 'tw-chars', null, { 'aria-hidden': 'true' });
+		String(notes[i]).split('').forEach(function (ch) { add(typed, el('span', 'tw', ch)); });
+		add(p, el('span', 'screen-reader-text', notes[i]), typed);
+		add(hero, p);
 	});
+	// Types the notes out one after another, like keys being pressed.
+	function typeNotes() {
+		var t = 350;                 // wait before the first key
+		var perLetter = 32;          // ms per letter: lower = faster
+		var pauseBetween = 260;      // ms pause between notes
+		Array.prototype.forEach.call(hero.querySelectorAll('.hero__note'), function (note) {
+			Array.prototype.forEach.call(note.querySelectorAll('.tw'), function (letter) {
+				t += /\s/.test(letter.textContent) ? perLetter * 0.6 : perLetter;
+				setTimeout(function () { letter.classList.add('on'); }, t);
+			});
+			t += pauseBetween;
+		});
+	}
 	var h1 = el('h1', 'hero__name bubble');
 	h1.style.setProperty('--chars', Math.max(4, first.length, last.length));
 	add(h1, el('span', 'hero__first', first), last ? el('span', 'hero__last', last) : null);
@@ -52,6 +72,17 @@
 		add(fig, el('img', null, null, { src: C.heroImage, alt: fullName, fetchpriority: 'high' }));
 		add(hero, fig);
 	}
+	(C.heroFlowers || []).forEach(function (f) {
+		if (!f || !safeUrl(f.image)) { return; }
+		var flower = el('img', 'hero__flower', null, { src: f.image, alt: '', 'aria-hidden': 'true' });
+		flower.style.left = f.left || '0';
+		flower.style.top = f.top || '0';
+		flower.style.width = f.size || '25%';
+		var spin = Number(f.spin) || 24;
+		flower.style.animationDuration = Math.abs(spin) + 's';
+		if (spin < 0) { flower.style.animationDirection = 'reverse'; }
+		add(hero, flower);
+	});
 	add(hero, el('p', 'hero__role', C.role || ''), el('p', 'hero__by', fullName ? 'By ' + fullName : ''));
 
 	/* ---------- about ---------- */
@@ -185,6 +216,39 @@
 	});
 	add(env, el('div', 'envelope__back', null, { 'aria-hidden': 'true' }), form, el('div', 'envelope__front', null, { 'aria-hidden': 'true' }));
 	add(contact, env);
+
+	/* ---------- dotted arrows draw themselves in when scrolled into view ---------- */
+	var arrows = document.querySelectorAll('.scribble, .story__squiggle, .story__connector');
+	var calm = false; // animations always play, whatever the visitor's system animation setting says
+	if (!calm) {
+		// "anim" = motion is allowed; "loaded" = images and fonts are in, so the hero notes can play their intro now
+		document.documentElement.classList.add('anim');
+		var ready = function () { document.documentElement.classList.add('loaded'); typeNotes(); };
+		if (document.readyState === 'complete') { ready(); } else { window.addEventListener('load', ready); }
+	}
+	if (arrows.length && !calm) {
+		var pending = Array.prototype.slice.call(arrows);
+		pending.forEach(function (a) { a.classList.add('draw'); });
+		// Position check instead of IntersectionObserver: a clipped (not yet drawn) arrow counts as invisible to it.
+		var ticking = false;
+		var check = function () {
+			ticking = false;
+			pending = pending.filter(function (a) {
+				var r = a.getBoundingClientRect();
+				if (r.top < window.innerHeight * 0.85 && r.bottom > 0) { a.classList.add('is-drawn'); return false; }
+				return true;
+			});
+			if (!pending.length) {
+				window.removeEventListener('scroll', onScroll);
+				window.removeEventListener('resize', onScroll);
+			}
+		};
+		var onScroll = function () { if (!ticking) { ticking = true; window.requestAnimationFrame(check); } };
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', onScroll);
+		window.addEventListener('load', onScroll);
+		check();
+	}
 
 	/* ---------- mobile menu ---------- */
 	var header = $('.site-header');

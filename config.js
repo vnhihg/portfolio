@@ -16,6 +16,15 @@ window.PORTFOLIO = {
   ],
   heroImage: "images/hero_image.png",                     // e.g. "images/me.png"  (a cut-out PNG looks best; leave "" for none)
 
+  /* ---- Spinning flowers in the hero (they sit behind the photo and the name) ----
+     left / top = where the flower's top-left corner sits, as % of the hero
+     size       = width as % of the hero
+     spin       = seconds per full turn (bigger = slower); negative number = spins the other way */
+  heroFlowers: [
+    { image: "images/flowerblue.png",   left: "62%", top: "1%",  size: "26%", spin: 22 },
+    { image: "images/floweryellow.png", left: "6%",  top: "50%", size: "24%", spin: -28 }
+  ],
+
   /* ---- About ---- */
   aboutHeadline: "it's not just art, | it's vibing with colour.",
   aboutText: [
@@ -33,7 +42,7 @@ window.PORTFOLIO = {
   storyHeading: "my story",
   story: [
     {
-      text: "Replace this with the first part of my story: where i started, what got me into art and what shaped my style.",
+      text: "Replace this with the first part of your story: where you started, what got you into art and what shaped your style.",
       photos: [
         { image: "images/story_1a.jpg", label: "Nhi, the beginning" },
         { image: "images/story_1b.jpg", label: "first sketchbooks" }
@@ -41,7 +50,7 @@ window.PORTFOLIO = {
       highlight: "Replace this with a short, bold closing line for chapter one."
     },
     {
-      text: "Replace this with the second part: what i do today, what i am working on and where i want to go next.",
+      text: "Replace this with the second part: what you do today, what you are working on and where you want to go next.",
       photos: [
         { image: "images/story_2a.jpg", label: "Nhi, today" },
         { image: "images/story_2b.jpg", label: "in the studio" }
