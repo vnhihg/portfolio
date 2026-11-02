@@ -287,7 +287,7 @@ mask-size: 9px 9px;
 
 /* Halftone look: greyscale, punchy contrast, paper-coloured dots in the shadows. */
 .halftone { position: relative; isolation: isolate; }
-.halftone img { filter: grayscale(0.25) contrast(1.4) brightness(1.03); }
+.halftone img { filter: grayscale(0.4) contrast(1.4) brightness(1.03); }
 .halftone::after {
 	content: none;
 }
@@ -581,9 +581,8 @@ mask-size: 9px 9px;
 /* ==========================================================================
    Motion (plays for everyone, regardless of the visitor's system animation setting)
    ========================================================================== */
-/* 1. slow float on the sticker-like polaroids. Uses `translate`, so it never fights the tilt (`transform`). */
+/* 1. slow float on the story photos. Uses `translate`, so it never fights the tilt (`transform`). */
 @keyframes bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -9px; } }
-.about__media .polaroid { animation: bob 6s ease-in-out infinite; }
 .story__photo--1 { animation: bob 7s ease-in-out infinite; }
 .story__photo--2 { animation: bob 8s ease-in-out -3s infinite; } /* negative delay = out of step with photo 1 */
 
@@ -592,10 +591,11 @@ mask-size: 9px 9px;
 .hero__flower { z-index: 1; height: auto; max-width: none; pointer-events: none; animation: flower-spin 24s linear infinite; }
 
 /* 2. polaroids straighten up and the tape wiggles on hover */
-.polaroid { transition: transform .3s ease, box-shadow .3s ease; }
-.polaroid:hover { transform: rotate(0deg) scale(1.04); box-shadow: 0 16px 28px -14px rgba(40,25,20,.6), 0 1px 3px rgba(0,0,0,.15); }
-.polaroid .tape { transition: transform .3s ease; }
-.polaroid:hover .tape { transform: rotate(-9deg); }
+/* (story photos only; the About photo stays still) */
+.story__photo { transition: transform .3s ease, box-shadow .3s ease; }
+.story__photo:hover { transform: rotate(0deg) scale(1.04); box-shadow: 0 16px 28px -14px rgba(40,25,20,.6), 0 1px 3px rgba(0,0,0,.15); }
+.story__photo .tape { transition: transform .3s ease; }
+.story__photo:hover .tape { transform: rotate(-9deg); }
 
 /* 3. hero notes appear one after another */
 /* typewriter: every letter starts hidden, script.js reveals them one by one once the page has loaded */
