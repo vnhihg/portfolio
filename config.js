@@ -42,20 +42,20 @@ window.PORTFOLIO = {
   storyHeading: "my story",
   story: [
     {
-      text: "Replace this with the first part of your story: where you started, what got you into art and what shaped your style.",
+      text: "I was born and raised in Hanoi, I have always been fascinated by the world of art and design. My journey has been a continuous exploration of my own style and voice.",
       photos: [
         { image: "images/story_1a.jpg", label: "Nhi, the beginning" },
         { image: "images/story_1b.jpg", label: "first sketchbooks" }
       ],
-      highlight: "Replace this with a short, bold closing line for chapter one."
+      highlight: "I'm always looking for new ways to express myself and connect with others through my art."
     },
     {
-      text: "Replace this with the second part: what you do today, what you are working on and where you want to go next.",
+      text: "As I grew older, I realized what fun it is to create art that works with digital media as well. I learned to use various software and tools to bring my ideas to life, and I started to experiment with different styles and techniques.",
       photos: [
         { image: "images/story_2a.jpg", label: "Nhi, today" },
         { image: "images/story_2b.jpg", label: "in the studio" }
       ],
-      highlight: "Replace this with a short, bold closing line for chapter two."
+      highlight: "I'm always excited to take on new challenges and push the boundaries of my creativity."
     }
   ],
 
