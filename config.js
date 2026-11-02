@@ -62,7 +62,7 @@ window.PORTFOLIO = {
   /* ---- Resume ---- */
   resumeHeading: "resume",
   resumeNote: "Want the full picture? Here is my CV.",
-  resumeLink: "files/resume.pdf",        // put your PDF in a "files" folder, or paste a full link
+  resumeLink: "files/Lebenslauf_Hoang.pdf",        
   resumeButton: "Open my CV (PDF)",
 
   /* ---- Contact ---- */
