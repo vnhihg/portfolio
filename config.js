@@ -44,16 +44,16 @@ window.PORTFOLIO = {
     {
       text: "I was born and raised in Hanoi, I have always been fascinated by the world of art and design. My journey has been a continuous exploration of my own style and voice.",
       photos: [
-        { image: "images/story_1a.jpg", label: "Nhi, the beginning" },
-        { image: "images/story_1b.jpg", label: "first sketchbooks" }
+        { image: "images/story_1a.jpg", label: "im Bau :)" },
+        { image: "images/story_1b.jpg", label: "im Bau" }
       ],
       highlight: "I'm always looking for new ways to express myself and connect with others through my art."
     },
     {
       text: "As I grew older, I realized what fun it is to create art that works with digital media as well. I learned to use various software and tools to bring my ideas to life, and I started to experiment with different styles and techniques.",
       photos: [
-        { image: "images/story_2a.jpg", label: "Nhi, today" },
-        { image: "images/story_2b.jpg", label: "in the studio" }
+        { image: "images/story_2a.jpg", label: "Under Construction" },
+        { image: "images/story_2b.jpg", label: "Under Construction" }
       ],
       highlight: "I'm always excited to take on new challenges and push the boundaries of my creativity."
     }
